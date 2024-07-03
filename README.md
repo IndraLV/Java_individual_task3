@@ -2,3 +2,66 @@
 ## This was crazy! I was on vacation with family than returned and tried to manage 2 lessons, test and individual task... So much errors, corrections, interesting advices fro AI like never before. 
 ## I am not satisfied with result, but deadline is close so...
 ## Hope to be better next time!
+
+```java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        CheeseShop cheeseShop = new CheeseShop();
+        Scanner scanner = new Scanner(System.in);
+        String choice;
+
+        while (true) {
+            System.out.println("To add cheese to shop, press 1!");
+            System.out.println("To remove cheese from shop, press 2!");
+            System.out.println("To see list of available cheeses, press 3!");
+            System.out.println("To add cheese to cart, press 4!");
+            System.out.println("To remove cheese from cart, press 5!");
+            System.out.println("To see cart, press 6!");
+            System.out.println("To finish, press 7!");
+
+            choice = scanner.nextLine();
+
+            if (choice.equals("1")) {
+                System.out.print("Enter cheese name: ");
+                String name = scanner.nextLine();
+                System.out.print("Enter cheese price: ");
+                double price = Double.parseDouble(scanner.nextLine());
+                cheeseShop.addCheeseToShop(new Cheese(name, price));
+                System.out.println("Cheese added!");
+            } else if (choice.equals("2")) {
+                System.out.print("Enter cheese name to remove: ");
+                String name = scanner.nextLine();
+                cheeseShop.removeCheeseFromShop(name);
+                System.out.println("Cheese removed!");
+            } else if (choice.equals("3")) {
+                System.out.println("Available cheeses:");
+                for (Cheese cheese : cheeseShop.getCheesesAvailable()) {
+                    System.out.println(cheese);
+                }
+            } else if (choice.equals("4")) {
+                System.out.print("Enter cheese name to add to cart: ");
+                String name = scanner.nextLine();
+                cheeseShop.addToCart(name);
+            } else if (choice.equals("5")) {
+                System.out.print("Enter cheese name to remove from cart: ");
+                String name = scanner.nextLine();
+                cheeseShop.removeFromCart(name);
+            } else if (choice.equals("6")) {
+                System.out.println("In cart you have:");
+                for (Cheese cheese : cheeseShop.getCart()) {
+                    System.out.println(cheese);
+                }
+            } else if (choice.equals("7")) {
+                System.out.println("See you next time!");
+                scanner.close();
+                return;
+            } else {
+                System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+}
+```
+
