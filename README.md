@@ -65,3 +65,83 @@ public class Main {
 }
 ```
 
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+
+class CheeseShop {
+    private List<Cheese> cheeses = new ArrayList<>();
+    private List<Cheese> cart = new ArrayList<>();
+
+
+    public void addCheeseToShop(Cheese cheese) {
+        cheeses.add(cheese);
+    }
+
+
+    public void removeCheeseFromShop(String name) {
+        cheeses.removeIf(cheese -> cheese.getName().equals(name));
+    }
+
+
+    public void addToCart(String name) {
+        Cheese cheese = findCheeseInShop(name);
+        if (cheese != null) {
+            cart.add(cheese);
+            System.out.println("Added to cart: " + cheese);
+        } else {
+            System.out.println("Cheese not found in shop!");
+        }
+    }
+
+
+    public void removeFromCart(String name) {
+        cart.removeIf(cheese -> cheese.getName().equals(name));
+        System.out.println("Removed from cart: " + name);
+    }
+
+
+    public List<Cheese> getCheesesAvailable() {
+        return new ArrayList<>(cheeses);
+    }
+
+
+    public List<Cheese> getCart() {
+        return new ArrayList<>(cart);
+    }
+
+
+    public Cheese findCheeseInShop(String name) {
+        for (Cheese cheese : cheeses) {
+            if (cheese.getName().equals(name)) {
+                return cheese;
+            }
+        }
+        return null;
+    }
+}
+```
+
+```java
+class Cheese {
+    private String name;
+    private double price;
+
+    public Cheese(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+
+}
+```
+
